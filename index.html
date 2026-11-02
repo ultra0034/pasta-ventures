@@ -45,7 +45,6 @@ h1,h2{text-wrap:balance;letter-spacing:-.02em}
 .nav.scrolled{border-bottom-color:var(--line)}
 .nav .wrap{display:flex;align-items:center;gap:24px;min-height:64px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.01em;white-space:nowrap}
-.mark{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:#fff;box-shadow:0 1px 3px rgba(14,21,37,.12),0 0 0 1px var(--line);color:var(--blue);font-weight:900;font-size:13px;letter-spacing:-.04em}
 .nav ul{display:flex;gap:28px;list-style:none;margin:0 auto;padding:0;font-size:14px;color:var(--ink-2)}
 .nav ul a:hover{color:var(--blue)}
 @media (max-width:860px){.nav ul{display:none}.nav .btn{margin-left:auto}}
@@ -218,7 +217,10 @@ section{padding-block:clamp(72px,10vw,128px)}
 .groups .gno{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-soft);border-radius:8px;padding:4px 8px;white-space:nowrap}
 .groups b{display:block;font-size:16px}
 .groups span{display:block;color:var(--muted);font-size:14px}
-.ceo{padding:32px}
+.ceo{padding:0;overflow:hidden}
+.ceo .photo{position:relative;height:340px;background:radial-gradient(80% 70% at 50% 100%,#D6E4FD,transparent 70%),linear-gradient(#F4F8FF,#EAF1FE);overflow:hidden;border-bottom:1px solid var(--line)}
+.ceo .photo img{position:absolute;left:50%;top:28px;width:300px;height:auto;max-width:none;transform:translateX(-50%)}
+.ceo .info-b{padding:28px 32px 32px}
 .ceo .pill{font-size:12px}
 .ceo h3{font-size:30px;font-weight:800;margin-top:14px}
 .ceo .lead{color:var(--ink-2);margin-top:10px}
@@ -246,33 +248,20 @@ section{padding-block:clamp(72px,10vw,128px)}
 @media (max-width:900px){.pkgs{grid-template-columns:minmax(0,1fr);max-width:480px;margin-inline:auto}.pkg.feat{margin-top:12px}}
 
 /* contact */
-.contact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,64px);align-items:start}
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:center}
 .contact h2{font-size:clamp(32px,4.4vw,46px);line-height:1.25;font-weight:700}
 .contact .lead{color:var(--muted);font-size:18px;margin-top:18px}
-.info{display:grid;gap:12px;margin-top:32px}
-.info .card{padding:14px 18px;display:flex;gap:14px;align-items:center}
+.info{display:grid;gap:12px}
+.info .card{padding:20px 24px;display:flex;gap:14px;align-items:center}
 .info .ico{width:40px;height:40px;border-radius:10px}
 .info small{display:block;color:var(--muted);font-size:13px}
 .info b{display:block;font-weight:600;overflow-wrap:anywhere}
-form.card{padding:clamp(22px,3vw,32px);background:#fff;box-shadow:0 24px 48px -32px rgba(14,21,37,.25)}
-.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.field{display:flex;flex-direction:column;gap:6px}
-.field.full{grid-column:1/-1}
-.field label{font-size:14px;font-weight:600}
-.field label i{color:var(--blue);font-style:normal}
-.field input,.field select,.field textarea{font:inherit;font-size:15px;color:var(--ink);background:#F8FAFC;border:1px solid var(--line);border-radius:10px;padding:11px 14px;width:100%}
-.field textarea{min-height:120px;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(11,100,244,.15)}
-form .btn{margin-top:22px}
-.fnote{text-align:center;color:var(--muted);font-size:13px;margin-top:12px}
 @media (max-width:900px){.contact{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:560px){.fgrid{grid-template-columns:minmax(0,1fr)}}
 
 /* footer */
 footer{background:var(--soft);border-top:1px solid var(--line);padding-block:40px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:flex-start}
 footer .brand{font-size:16px}
-footer .mark{width:26px;height:26px;font-size:11px;border-radius:8px}
 footer p{color:var(--muted);font-size:13px;margin-top:8px}
 footer .meta{display:flex;flex-wrap:wrap;gap:8px 20px;color:var(--ink-2);font-size:14px}
 footer .meta span{display:inline-flex;align-items:center;gap:6px}
@@ -313,7 +302,7 @@ footer .meta svg{width:16px;height:16px;color:var(--muted)}
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Pasta Ventures 홈"><span class="mark">PV</span>Pasta Ventures</a>
+    <a class="brand" href="#top" aria-label="Pasta Ventures 홈">Pasta Ventures</a>
     <ul>
       <li><a href="#problem">소개</a></li>
       <li><a href="#services">서비스</a></li>
@@ -517,6 +506,8 @@ footer .meta svg{width:16px;height:16px;color:var(--muted)}
           <div class="card rv"><span class="gno">GROUP 5</span><div><b>Events / Global Expansion</b><span>파트너십팀 · 이벤트, 전시회, 공공 섹터 전문가</span></div></div>
         </div>
         <div class="card ceo rv">
+          <div class="photo"><img src="assets/team/ceo.webp" alt="파스타벤처스 임성준 대표" width="640" height="941" loading="lazy" decoding="async"></div>
+          <div class="info-b">
           <span class="pill">CEO</span>
           <h3>임성준</h3>
           <p class="lead">스타트업 창업자이자 투자자, 작가. 현장 경험과 노하우를 바탕으로 스타트업이 실질적인 성과를 내도록 돕습니다.</p>
@@ -527,6 +518,7 @@ footer .meta svg{width:16px;height:16px;color:var(--muted)}
             <li><svg class="i"><use href="#i-check"/></svg>네이버 검색광고사업부, 카카오 등 대기업 경력</li>
             <li><svg class="i"><use href="#i-check"/></svg>저서 다수 (유노북스)</li>
           </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -575,33 +567,14 @@ footer .meta svg{width:16px;height:16px;color:var(--muted)}
         <span class="eyebrow">Contact</span>
         <h2>우연이 아닌 성장,<br><span class="hl">파스타벤처스</span>와<br>시작하세요</h2>
         <p class="lead">우연이 아닌 전략의 결과를<br>함께 만들겠습니다.</p>
+      </div>
+      <div class="rv">
         <div class="info">
           <a class="card" href="mailto:junsme@gmail.com"><span class="ico"><svg class="i"><use href="#i-mail"/></svg></span><span><small>이메일</small><b>junsme@gmail.com</b></span></a>
           <a class="card" href="tel:010-3464-4066"><span class="ico"><svg class="i"><use href="#i-phone"/></svg></span><span><small>전화</small><b>010-3464-4066</b></span></a>
           <div class="card"><span class="ico"><svg class="i"><use href="#i-pin"/></svg></span><span><small>주소</small><b>경기도 화성시 동탄순환대로</b></span></div>
         </div>
       </div>
-      <form class="card rv" id="form" novalidate>
-        <div class="fgrid">
-          <div class="field"><label for="f-co">회사명 <i>*</i></label><input id="f-co" name="회사명" required placeholder="예: 파스타랩"></div>
-          <div class="field"><label for="f-nm">담당자 성함/직책 <i>*</i></label><input id="f-nm" name="담당자" required placeholder="예: 홍길동 대표"></div>
-          <div class="field"><label for="f-em">이메일 <i>*</i></label><input id="f-em" name="이메일" type="email" required placeholder="example@company.com"></div>
-          <div class="field"><label for="f-ph">전화번호</label><input id="f-ph" name="전화번호" type="tel" placeholder="010-0000-0000"></div>
-          <div class="field"><label for="f-sv">관심 서비스 <i>*</i></label>
-            <select id="f-sv" name="관심 서비스" required>
-              <option value="">선택해주세요</option>
-              <option>IR Consulting</option><option>Mentor Matching</option><option>Global Expansion</option><option>Growth Model &amp; Scale-up</option><option>Business Meetups</option><option>Education</option><option>Digital Marketing</option><option>AX Consulting</option><option>Event &amp; Agency</option><option>기타</option>
-            </select></div>
-          <div class="field"><label for="f-st">성장 단계</label>
-            <select id="f-st" name="성장 단계">
-              <option value="">선택해주세요</option>
-              <option>예비창업</option><option>Seed</option><option>Pre-A</option><option>Series A 이상</option><option>기관/기업</option>
-            </select></div>
-          <div class="field full"><label for="f-msg">문의 내용</label><textarea id="f-msg" name="문의 내용" placeholder="현재 상황, 목표, 희망 일정 등을 알려주세요"></textarea></div>
-        </div>
-        <button class="btn btn-primary btn-block" type="submit">문의 메일 작성하기 <svg class="i"><use href="#i-arrow"/></svg></button>
-        <p class="fnote" id="fnote">버튼을 누르면 메일 앱이 열리고 작성한 내용이 채워집니다</p>
-      </form>
     </div>
   </section>
 </main>
@@ -609,7 +582,7 @@ footer .meta svg{width:16px;height:16px;color:var(--muted)}
 <footer>
   <div class="wrap">
     <div>
-      <a class="brand" href="#top"><span class="mark">PV</span>Pasta Ventures</a>
+      <a class="brand" href="#top">Pasta Ventures</a>
       <p>경영컨설팅업 · 광고대행업 · 교육지원 서비스업 · 2014년 설립<br>© 2026 Pasta Ventures Co. All rights reserved.</p>
     </div>
     <div class="meta">
@@ -778,17 +751,6 @@ var SERVICES = ["IR Consulting","Mentor Matching","Global Expansion","Growth Mod
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
     [].forEach.call(rv,function(el){io.observe(el)});
   } else [].forEach.call(rv,function(el){el.classList.add("in")});
-  // contact form -> mailto
-  var form=document.getElementById("form"), note=document.getElementById("fnote");
-  form.addEventListener("submit",function(e){
-    e.preventDefault();
-    var bad=[].filter.call(form.querySelectorAll("[required]"),function(el){return !el.value.trim()||(el.type==="email"&&!el.checkValidity())});
-    if(bad.length){bad[0].focus();note.textContent="필수 항목(*)을 확인해주세요";note.style.color="#E5484D";return}
-    var lines=[].map.call(form.querySelectorAll("input,select,textarea"),function(el){return el.name+": "+(el.value.trim()||"-")});
-    var subject="[파스타벤처스 문의] "+form.querySelector("#f-co").value.trim()+" / "+form.querySelector("#f-sv").value;
-    location.href="mailto:junsme@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(lines.join("\n"));
-    note.textContent="메일 앱에서 내용을 확인하고 보내주세요";note.style.color="";
-  });
 })();
 </script>
 </body>
