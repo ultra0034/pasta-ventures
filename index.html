@@ -248,14 +248,37 @@ section{padding-block:clamp(72px,10vw,128px)}
 @media (max-width:900px){.pkgs{grid-template-columns:minmax(0,1fr);max-width:480px;margin-inline:auto}.pkg.feat{margin-top:12px}}
 
 /* contact */
-.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:center}
+.contact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,64px);align-items:start}
 .contact h2{font-size:clamp(32px,4.4vw,46px);line-height:1.25;font-weight:700}
 .contact .lead{color:var(--muted);font-size:18px;margin-top:18px}
-.info{display:grid;gap:12px}
-.info .card{padding:20px 24px;display:flex;gap:14px;align-items:center}
+.info{display:grid;gap:12px;margin-top:32px}
+.info .card{padding:14px 18px;display:flex;gap:14px;align-items:center}
 .info .ico{width:40px;height:40px;border-radius:10px}
 .info small{display:block;color:var(--muted);font-size:13px}
 .info b{display:block;font-weight:600;overflow-wrap:anywhere}
+form.card{padding:clamp(22px,3vw,32px);background:#fff;box-shadow:0 24px 48px -32px rgba(14,21,37,.25)}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:14px;font-weight:600}
+.field label i{color:var(--blue);font-style:normal}
+.field input,.field select,.field textarea{font:inherit;font-size:15px;color:var(--ink);background:#F8FAFC;border:1px solid var(--line);border-radius:10px;padding:11px 14px;width:100%}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(11,100,244,.15)}
+.field [aria-invalid="true"]{border-color:var(--red);background:#fff}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+form .btn{margin-top:22px}
+form .btn[disabled]{opacity:.6;cursor:progress;transform:none}
+.fnote{text-align:center;color:var(--muted);font-size:13px;margin-top:12px}
+.fnote.err{color:var(--red)}
+.done{display:none;text-align:center;padding:48px 16px}
+.done .ico{width:56px;height:56px;border-radius:50%;margin:0 auto 16px}
+.done .ico svg{width:26px;height:26px}
+.done h3{font-size:22px;font-weight:700}
+.done p{color:var(--muted);margin-top:8px}
+form.sent .fgrid,form.sent .btn,form.sent .fnote{display:none}
+form.sent .done{display:block}
+@media (max-width:560px){.fgrid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:900px){.contact{grid-template-columns:minmax(0,1fr)}}
 
 /* footer */
@@ -567,14 +590,35 @@ footer .meta svg{width:16px;height:16px;color:var(--muted)}
         <span class="eyebrow">Contact</span>
         <h2>우연이 아닌 성장,<br><span class="hl">파스타벤처스</span>와<br>시작하세요</h2>
         <p class="lead">우연이 아닌 전략의 결과를<br>함께 만들겠습니다.</p>
-      </div>
-      <div class="rv">
         <div class="info">
           <a class="card" href="mailto:junsme@gmail.com"><span class="ico"><svg class="i"><use href="#i-mail"/></svg></span><span><small>이메일</small><b>junsme@gmail.com</b></span></a>
           <a class="card" href="tel:010-3464-4066"><span class="ico"><svg class="i"><use href="#i-phone"/></svg></span><span><small>전화</small><b>010-3464-4066</b></span></a>
           <div class="card"><span class="ico"><svg class="i"><use href="#i-pin"/></svg></span><span><small>주소</small><b>경기도 화성시 동탄순환대로</b></span></div>
         </div>
       </div>
+      <form class="card rv" id="form" novalidate>
+        <div class="fgrid">
+          <div class="field"><label for="f-co">회사명 <i>*</i></label><input id="f-co" name="회사명" required autocomplete="organization" placeholder="예: 파스타랩"></div>
+          <div class="field"><label for="f-nm">담당자 성함/직책 <i>*</i></label><input id="f-nm" name="담당자" required autocomplete="name" placeholder="예: 홍길동 대표"></div>
+          <div class="field"><label for="f-em">이메일 <i>*</i></label><input id="f-em" name="이메일" type="email" required autocomplete="email" placeholder="example@company.com"></div>
+          <div class="field"><label for="f-ph">전화번호</label><input id="f-ph" name="전화번호" type="tel" autocomplete="tel" placeholder="010-0000-0000"></div>
+          <div class="field"><label for="f-sv">관심 서비스 <i>*</i></label>
+            <select id="f-sv" name="관심 서비스" required>
+              <option value="">선택해주세요</option>
+              <option>IR Consulting</option><option>Mentor Matching</option><option>Global Expansion</option><option>Growth Model &amp; Scale-up</option><option>Business Meetups</option><option>Education</option><option>Digital Marketing</option><option>AX Consulting</option><option>Event &amp; Agency</option><option>기타</option>
+            </select></div>
+          <div class="field"><label for="f-st">성장 단계</label>
+            <select id="f-st" name="성장 단계">
+              <option value="">선택해주세요</option>
+              <option>예비창업</option><option>Seed</option><option>Pre-A</option><option>Series A 이상</option><option>기관/기업</option>
+            </select></div>
+          <div class="field full"><label for="f-msg">문의 내용</label><textarea id="f-msg" name="문의 내용" placeholder="현재 상황, 목표, 희망 일정 등을 알려주세요"></textarea></div>
+          <label class="hp" aria-hidden="true">Leave empty<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit" id="fbtn">문의 보내기 <svg class="i"><use href="#i-arrow"/></svg></button>
+        <p class="fnote" id="fnote" role="status" aria-live="polite">영업일 기준 빠르게 회신드립니다</p>
+        <div class="done" tabindex="-1" id="fdone"><span class="ico"><svg class="i"><use href="#i-check"/></svg></span><h3>문의가 접수되었습니다</h3><p>남겨주신 이메일로 회신드리겠습니다.</p></div>
+      </form>
     </div>
   </section>
 </main>
@@ -745,6 +789,28 @@ var SERVICES = ["IR Consulting","Mentor Matching","Global Expansion","Growth Mod
       if(e.key==="ArrowLeft")select((i-1+tabs.length)%tabs.length);
     });
   });
+  // contact form -> Web3Forms -> Gmail
+  var WEB3FORMS_KEY = "";  // web3forms.com에서 받은 Access Key
+  var form=document.getElementById("form"), note=document.getElementById("fnote"), btn=document.getElementById("fbtn");
+  function say(t,err){note.textContent=t;note.classList.toggle("err",!!err)}
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var bad=[].filter.call(form.querySelectorAll("[required]"),function(el){
+      var no=!el.value.trim()||(el.type==="email"&&!el.checkValidity());el.setAttribute("aria-invalid",no);return no});
+    if(bad.length){bad[0].focus();say("필수 항목(*)을 확인해주세요",true);return}
+    if(!WEB3FORMS_KEY){say("문의 접수 설정 중입니다. junsme@gmail.com으로 메일 주세요",true);return}
+    var data={access_key:WEB3FORMS_KEY,from_name:"파스타벤처스 웹사이트",
+      subject:"[파스타벤처스 문의] "+form.querySelector("#f-co").value.trim()+" / "+form.querySelector("#f-sv").value,
+      replyto:form.querySelector("#f-em").value.trim(),botcheck:form.querySelector('[name="botcheck"]').checked};
+    [].forEach.call(form.querySelectorAll("input:not([type=checkbox]),select,textarea"),function(el){data[el.name]=el.value.trim()||"-"});
+    btn.disabled=true;say("보내는 중입니다…");
+    fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)})
+      .then(function(r){return r.json().then(function(j){if(!r.ok||!j.success)throw new Error(j.message||r.status)})})
+      .then(function(){form.reset();form.classList.add("sent");document.getElementById("fdone").focus()})
+      .catch(function(){say("전송에 실패했습니다. 잠시 후 다시 시도하거나 junsme@gmail.com으로 메일 주세요",true)})
+      .then(function(){btn.disabled=false});
+  });
+  form.addEventListener("input",function(e){if(e.target.getAttribute("aria-invalid")==="true"&&e.target.value.trim())e.target.setAttribute("aria-invalid","false")});
   // reveal on scroll
   var rv=document.querySelectorAll(".rv");
   if("IntersectionObserver" in window){
